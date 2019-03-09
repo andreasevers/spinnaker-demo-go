@@ -1,6 +1,6 @@
 FROM alpine
 
 COPY gopath/bin/hello /hello
-COPY gopath/src/hello /hello
+COPY . /hello
 
 ENTRYPOINT ["/hello"]
