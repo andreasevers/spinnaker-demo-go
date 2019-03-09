@@ -1,9 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
-  args: ['install', 'hello']
+  args: ['get', 'github.com/robfig/cron']
   env: ['PROJECT_ROOT=hello']
 - name: 'gcr.io/cloud-builders/go'
-  args: ['get', 'github.com/robfig/cron']
+  args: ['install', 'hello']
   env: ['PROJECT_ROOT=hello']
 - name: 'gcr.io/cloud-builders/go'
   args: ['test', 'hello']
