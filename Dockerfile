@@ -1,8 +1,7 @@
 FROM alpine
 
-COPY gopath/bin/hello *.jpg *.html /hello/
-RUN ls -lrt .
-RUN chmod 777 -R .
-RUN ls -lrt .
+COPY gopath/bin/hello /hello
+COPY *.jpg /hello
+COPY *.html /hello
 
 ENTRYPOINT ["/hello"]
