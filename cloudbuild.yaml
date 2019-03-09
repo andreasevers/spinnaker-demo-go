@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/go'
+  args: ['install', 'hello']
+  env: ['PROJECT_ROOT=hello']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['get', 'github.com/robfig/cron']
+  env: ['PROJECT_ROOT=hello']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['test', 'hello']
+  env: ['PROJECT_ROOT=hello']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=eu.gcr.io/$PROJECT_ID/spinnaker-demo-go:$REVISION_ID', '.']
+images: ['eu.gcr.io/$PROJECT_ID/spinnaker-demo-go:$REVISION_ID']
