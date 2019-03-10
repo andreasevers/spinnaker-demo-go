@@ -1,6 +1,6 @@
 FROM alpine
 
-ADD gopath/bin/hello *.jpg *.html /hello/
+ADD gopath/bin /hello
 # ADD *.jpg ./hello/
 # ADD *.html ./hello/
 
