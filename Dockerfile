@@ -1,7 +1,5 @@
 FROM alpine
 
-COPY gopath/bin /hello
-# ADD *.jpg ./hello/
-# ADD *.html ./hello/
+COPY gopath/bin/hello /hello
 
 ENTRYPOINT ["/hello"]

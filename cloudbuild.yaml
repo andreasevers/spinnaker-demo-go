@@ -1,13 +1,24 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
+  args: ['get', 'github.com/jteeuwen/go-bindata/...']
+  env: ['PROJECT_ROOT=${_PROJECT_ROOT}']
+  id: 'get-bindata'
+- name: 'alpine'
+  args: ['gopath/bin/go-bindata', 'data']
+  id: 'bindata'
+- name: 'gcr.io/cloud-builders/go'
   args: ['get', 'github.com/robfig/cron']
   env: ['PROJECT_ROOT=hello']
+  id: get-cron
 - name: 'gcr.io/cloud-builders/go'
   args: ['install', 'hello']
   env: ['PROJECT_ROOT=hello']
+  id: install
 - name: 'gcr.io/cloud-builders/go'
   args: ['test', 'hello']
   env: ['PROJECT_ROOT=hello']
+  id: test
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=eu.gcr.io/$PROJECT_ID/spinnaker-demo-go:$REVISION_ID', '.']
+  id: docker
 images: ['eu.gcr.io/$PROJECT_ID/spinnaker-demo-go:$REVISION_ID']
