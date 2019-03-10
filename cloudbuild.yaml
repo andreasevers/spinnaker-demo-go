@@ -7,6 +7,10 @@ steps:
   args: ['gopath/bin/go-bindata', 'data']
   id: 'bindata'
 - name: 'gcr.io/cloud-builders/go'
+  args: ['get', 'github.com/elazarl/go-bindata-assetfs']
+  env: ['PROJECT_ROOT=hello']
+  id: get-assetfs
+- name: 'gcr.io/cloud-builders/go'
   args: ['get', 'github.com/robfig/cron']
   env: ['PROJECT_ROOT=hello']
   id: get-cron
