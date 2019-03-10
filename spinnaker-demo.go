@@ -12,11 +12,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if path == "" {
 		path = "index.html"
 	}
-	data, err := Asset("/assets/" + path)
+	log.Print("Path: " + string(path))
+	data, err := Asset("/assets/" + string(path))
 
 	if err == nil {
 		w.Write(data)
 	} else {
+		log.Print("404")
 		w.WriteHeader(404)
 		w.Write([]byte("404 Something went wrong - " + http.StatusText(404)))
 	}
