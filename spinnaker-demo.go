@@ -5,10 +5,7 @@ import (
 	"net/http"
 )
 
-type MyHandler struct {
-}
-
-func (this *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	log.Print("Meeseeks")
 	var path string
 	path = r.URL.Path[1:]
@@ -46,6 +43,6 @@ func main() {
 	// c := cron.New()
 	// c.AddFunc("@every 20s", logRickAndMortyNames)
 	// c.Start()
-	http.Handle("/", new(MyHandler))
+	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
