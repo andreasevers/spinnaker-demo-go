@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/robfig/cron"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -13,13 +15,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		path = "index.html"
 	}
 	path = "assets/" + string(path)
-	log.Print("Path: " + string(path))
 	data, err := Asset(string(path))
 
 	if err == nil {
 		w.Write(data)
 	} else {
-		log.Print("404")
 		w.WriteHeader(404)
 		w.Write([]byte("404 Something went wrong - " + http.StatusText(404)))
 	}
@@ -43,9 +43,9 @@ func logRickAndMortyNames() {
 }
 
 func main() {
-	// c := cron.New()
-	// c.AddFunc("@every 20s", logRickAndMortyNames)
-	// c.Start()
+	c := cron.New()
+	c.AddFunc("@every 20s", logRickAndMortyNames)
+	c.Start()
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
