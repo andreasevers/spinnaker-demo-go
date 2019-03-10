@@ -12,8 +12,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if path == "" {
 		path = "index.html"
 	}
+	path = "assets/" + string(path)
 	log.Print("Path: " + string(path))
-	data, err := Asset("/assets/" + string(path))
+	data, err := Asset(string(path))
 
 	if err == nil {
 		w.Write(data)
