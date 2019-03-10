@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['get', 'github.com/jteeuwen/go-bindata/...']
-  env: ['PROJECT_ROOT=${_PROJECT_ROOT}']
+  env: ['PROJECT_ROOT=hello']
   id: 'get-bindata'
 - name: 'alpine'
   args: ['gopath/bin/go-bindata', 'data']
