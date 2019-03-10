@@ -3,8 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-
-	"github.com/robfig/cron"
 )
 
 type MyHandler struct {
@@ -45,9 +43,9 @@ func logRickAndMortyNames() {
 }
 
 func main() {
-	c := cron.New()
-	c.AddFunc("@every 20s", logRickAndMortyNames)
-	c.Start()
+	// c := cron.New()
+	// c.AddFunc("@every 20s", logRickAndMortyNames)
+	// c.Start()
 	http.Handle("/", new(MyHandler))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
