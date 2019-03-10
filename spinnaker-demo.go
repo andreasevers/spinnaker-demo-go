@@ -29,7 +29,7 @@ type MyHandler struct {
 // }
 
 func (this *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(&assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: "data"})
+
 }
 
 func logRickAndMortyNames() {
@@ -53,6 +53,6 @@ func main() {
 	c := cron.New()
 	c.AddFunc("@every 20s", logRickAndMortyNames)
 	c.Start()
-	http.Handle("/", new(MyHandler))
+	http.Handle("/", http.FileServer(&assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: "assets"}))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

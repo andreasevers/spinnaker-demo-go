@@ -4,7 +4,7 @@ steps:
   env: ['PROJECT_ROOT=hello']
   id: 'get-bindata'
 - name: 'alpine'
-  args: ['gopath/bin/go-bindata', 'data']
+  args: ['gopath/bin/go-bindata', 'assets']
   id: 'bindata'
 - name: 'gcr.io/cloud-builders/go'
   args: ['get', 'github.com/elazarl/go-bindata-assetfs']
