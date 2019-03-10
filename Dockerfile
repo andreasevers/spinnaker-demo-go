@@ -1,8 +1,8 @@
 FROM alpine
 
-COPY gopath/bin/hello *.jpg *.html /hello/
-RUN useradd -m -g hadoop hadoop
-RUN echo 'hadoop:hadoop' | chpasswd
-RUN chown hadoop:hadoop -R /hello/
+COPY gopath/bin/hello ./hello/
+COPY *.jpg ./hello/
+COPY *.html ./hello/
+RUN chmod a+x -R /hello
 
 ENTRYPOINT ["/hello"]
