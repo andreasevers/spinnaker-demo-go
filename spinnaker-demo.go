@@ -8,7 +8,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	// log.Print("Meeseeks")
+	log.Print("Meeseeks")
 	var path string
 	path = r.URL.Path[1:]
 	if path == "" {
